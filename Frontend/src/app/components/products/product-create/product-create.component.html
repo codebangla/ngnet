@@ -1,0 +1,27 @@
+<div class="container mt-4">
+  <h1 class="mb-5">NgNET - Angular 15, .NET 7.0, PostgreSQL Docker Application</h1>
+  <a routerLink="/" class="btn btn-secondary mb-3">Back</a>
+
+  <form>
+    <div class="mb-3">
+      <label for="productName" class="form-label">Product Name</label>
+      <input type="text" class="form-control" id="productName" name="productName" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input type="number" class="form-control" id="price" name="price" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add</button>
+  </form>
+
+  <table class="table table-striped mt-4">
+    <!-- Table content goes here -->
+  </table>
+</div>

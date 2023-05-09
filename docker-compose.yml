@@ -1,0 +1,50 @@
+version: '3.9'
+
+services:
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: frontenddockerfile
+    ports:
+      - 4201:4200
+    volumes:
+      - ./Frontend/src:/app/src
+    depends_on:
+      - backend
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: backenddockerfile
+    ports:
+      - 8000:80
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=pgdb;Port=5432;Database=mydatabase;Username=myuser;Password=mypassword
+    depends_on:
+      - pgdb
+    volumes:
+      - ./Backend:/app/backend
+  pgdb:
+    image: postgres:13.4-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_USER: myuser
+      POSTGRES_DB: mydatabase
+    ports:
+      - 5433:5432
+    volumes:
+      - db_data:/var/lib/postgresql/data/
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - 8080:80
+    depends_on:
+      - pgdb
+
+volumes:
+  db_data:
