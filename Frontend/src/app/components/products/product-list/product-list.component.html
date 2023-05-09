@@ -12,11 +12,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>ss</td>
-        <td>a</td>
-        <td>c</td>
-        <td>cdd</td>
+      <tr *ngFor="let product of products">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.price }}</td>
         <td class="text-end">
           <button class="btn btn-warning btn-sm me-1">Edit</button>
           <button class="btn btn-danger btn-sm">Delete</button>
