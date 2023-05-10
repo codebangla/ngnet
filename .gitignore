@@ -57,3 +57,7 @@ test.ts
 # Ignore miscellaneous files
 .DS_Store
 Thumbs.db
+
+# Ignore build output
+**/bin/
+**/obj/

@@ -31,3 +31,13 @@ C:\(F) Work\Interview\_x\ngnet\backend\obj\Debug\net7.0\refint\Backend.dll
 C:\(F) Work\Interview\_x\ngnet\backend\obj\Debug\net7.0\Backend.pdb
 C:\(F) Work\Interview\_x\ngnet\backend\obj\Debug\net7.0\Backend.genruntimeconfig.cache
 C:\(F) Work\Interview\_x\ngnet\backend\obj\Debug\net7.0\ref\Backend.dll
+C:\(F) Work\Interview\_x\ngnet\backend\bin\Debug\net7.0\Humanizer.dll
+C:\(F) Work\Interview\_x\ngnet\backend\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\(F) Work\Interview\_x\ngnet\backend\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\(F) Work\Interview\_x\ngnet\backend\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\(F) Work\Interview\_x\ngnet\backend\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\(F) Work\Interview\_x\ngnet\backend\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\(F) Work\Interview\_x\ngnet\backend\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\(F) Work\Interview\_x\ngnet\backend\bin\Debug\net7.0\Npgsql.dll
+C:\(F) Work\Interview\_x\ngnet\backend\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\(F) Work\Interview\_x\ngnet\backend\bin\Debug\net7.0\System.CodeDom.dll
