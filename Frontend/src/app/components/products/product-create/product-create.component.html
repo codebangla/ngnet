@@ -2,26 +2,46 @@
   <h1 class="mb-5">NgNET - Angular 15, .NET 7.0, PostgreSQL Docker Application</h1>
   <a routerLink="/" class="btn btn-secondary mb-3">Back</a>
 
-  <form>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="mb-3">
-      <label for="productName" class="form-label">Product Name</label>
-      <input type="text" class="form-control" id="productName" name="productName" required>
+      <label for="name">Product Name</label>
+      <input type="text" formControlName="name" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['name'].errors }" />
+      <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+        <div *ngIf="f['name'].errors['required']">Product name is required</div>
+      </div>
     </div>
 
     <div class="mb-3">
-      <label for="description" class="form-label">Description</label>
-      <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+      <label for="description">Description</label>
+      <textarea formControlName="description" class="form-control"></textarea>
     </div>
 
     <div class="mb-3">
-      <label for="price" class="form-label">Price</label>
-      <input type="number" class="form-control" id="price" name="price" required>
+      <label for="price">Price</label>
+      <input type="text" formControlName="price" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['price'].errors }" />
+      <div *ngIf="submitted && f['price'].errors" class="invalid-feedback">
+        <div *ngIf="f['price'].errors['required']">Price is required</div>
+        <div *ngIf="f['price'].errors['pattern']">
+          Price must be a valid money format (e.g. €10.99)
+        </div>
+      </div>
     </div>
-
-    <button type="submit" class="btn btn-primary">Add</button>
+    <div class="mb-3">
+      <label for="quantity">Quantity</label>
+      <input type="text" id="quantity" formControlName="quantity" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['quantity'].errors }" />
+      <div *ngIf="submitted && f['quantity'].errors" class="invalid-feedback">
+        <div *ngIf="f['quantity'].errors['required']">Quantity is required</div>
+        <div *ngIf="f['quantity'].errors['pattern']">
+          Quantity must be a whole number
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary">Add</button>
+      <button type="button" (click)="onReset()" class="btn btn-warning">Reset</button>
+    </div>
   </form>
-
-  <table class="table table-striped mt-4">
-    <!-- Table content goes here -->
-  </table>
 </div>

@@ -41,11 +41,25 @@ namespace Backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>> CreateProduct(Product product)
         {
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
+            try
+            {
+                // Exclude the Id property from the Product object
+                product.Id = 0; // or any default value
 
-            return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product);
+                _context.Products.Add(product);
+                await _context.SaveChangesAsync();
+
+                // Refresh the product object to get the generated Id
+                _context.Entry(product).Reload();
+
+                return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product);
+            }
+            catch
+            {
+                return StatusCode(500, new { error = "An error occurred while creating the product." });
+            }
         }
+
 
         // PUT: api/products/{id}
         [HttpPut("{id}")]

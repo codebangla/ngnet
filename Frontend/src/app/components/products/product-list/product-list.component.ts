@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/models/Product';
 import { ProductService } from 'src/app/services/product-service';
 
@@ -8,11 +9,19 @@ import { ProductService } from 'src/app/services/product-service';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  products: Product[] = [];
+  @ViewChild('closebutton') closebutton: any;
 
-  constructor(private productService: ProductService) {}
+  products: Product[] = [];
+  selectedProductId: number | null = null;
+
+
+  constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
+    this.getProducts();
+  }
+
+  getProducts(): void {
     this.productService.getProducts().subscribe(
       (products) => {
         this.products = products;
@@ -22,4 +31,28 @@ export class ProductListComponent implements OnInit {
       }
     );
   }
+  editProduct(productId: number): void {
+    this.router.navigate(['/product-edit', productId]);
+  }
+  setProductIdToDelete(productId: number): void {
+    this.selectedProductId = productId;
+  }
+
+
+  deleteProduct(): void {
+    if (this.selectedProductId !== null) {
+      this.productService.deleteProduct(this.selectedProductId).subscribe(
+        () => {
+          // Product deleted successfully, update the product list
+          this.getProducts();
+          this.selectedProductId = null; // Clear the selected product ID
+          this.closebutton.nativeElement.click();
+        },
+        (error) => {
+          console.error('Error deleting product:', error);
+        }
+      );
+    }
+  }
+
 }
